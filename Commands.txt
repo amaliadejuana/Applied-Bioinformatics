@@ -56,16 +56,14 @@ ls
 wc orf_coding_all_R64-2-1_20150113.fasta #161265 lines
 wc orf_trans_all_R64-2-1_20150113.fasta #60443 lines
 
-#Count how many genes are in orf_coding_all_R64-2-1_20150113.fasta. Note that this counting relies on the structure of the file only (i.e. no biological interpretation of the data is needed). Use grep and/or wc, see man grep and man wc (or Google). grep is a standard (and very powerful) text search tool. The general usage is grep "TEXT_PATTERN" FILE. Note! Be very careful to use the quotation marks, to make sure grep interprets the pattern as text only, not as another command.
+#Count how many genes are in orf_coding_all_R64-2-1_20150113.fasta and save the number of genes in results_2020_01_28/counts.txt
+grep -o ">" ../data/orf_coding_all_R64-2-1_20150113.fasta | wc -l >> ../results_2020_01_28/counts.txt
 
+#Count how many tRNA genes are in rna_coding_R64-2-1_20150113.fasta and save the results
+grep -o "tRNA_gene" rna_coding_R64-2-1_20150113.fasta | wc -l>> ../results_2020_01_28/counts.txt
 
-Save the number of genes in results_2020_01_28/counts.txt Use either nano to manually edit (see section below) or use the redirect symbol > to save the output of the previous command to the file, like count_genes_command > results_2019_01_22/counts.txt If you do the latter, you’ll no longer also get output to the screen (this is on purpose).
+#Inspect that counts.txt has the content you expect.
+cat counts.txt
 
-Count how many tRNA genes are in rna_coding_R64-2-1_20150113.fasta (Hint: grep)
-
-Save the results of command 4 to counts.txt by appending to the file using the >> (double >) redirect symbol, similar to before. Make sure to not replace existing content. Or use nano
-
-Inspect that counts.txt has the content you expect. It’s a small file so run cat results_2020_01_28/counts.txt.
-
-Make a copy of counts.txt called counts.txt.orig (it should also be placed in the results_2020_01_28 directory)
-
+#Make a copy of counts.txt called counts.txt.orig
+cp counts.txt counts.txt.orig
