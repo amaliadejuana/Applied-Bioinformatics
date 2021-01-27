@@ -67,3 +67,18 @@ cat counts.txt
 
 #Make a copy of counts.txt called counts.txt.orig
 cp counts.txt counts.txt.orig
+
+
+#3
+
+#Make a new directory
+mkdir Ex3
+
+# gene experssion data (fold change)
+wget https://web.archive.org/web/20130211035221/http://www.cbs.dtu.dk/courses/27619/ex1.dat
+
+# annotation
+wget https://web.archive.org/web/20170706124217/http://www.cbs.dtu.dk/courses/27619/ex1.acc
+
+#merge ex1.dat and ex1.acc
+paste ex1.acc ex1.dat
