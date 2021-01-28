@@ -82,3 +82,34 @@ wget https://web.archive.org/web/20170706124217/http://www.cbs.dtu.dk/courses/27
 
 #merge ex1.dat and ex1.acc
 paste ex1.acc ex1.dat
+
+
+#4
+
+#make a new directory
+mkdir exe4
+
+#Download and decompress
+wget http://eggnog5.embl.de/download/eggnog_5.0/per_tax_level/2759/2759_members.tsv.gz
+gunzip 2759_members.tsv.gz
+wget http://eggnog5.embl.de/download/eggnog_5.0/e5.taxid_info.tsv
+
+#View the files
+less -S 2759_members.tsv
+
+#Filter the lines with the protein's ID, cut the column, sort it and save it
+grep "4932." 2759_members.tsv | cut -f 2 | sort > groups_scerevisiae.txt
+grep "9606." 2759_members.tsv | cut -f 2 | sort > groups_hsapiens.txt
+
+#Question: why did we use the dot in the filtering?
+Because the protein ID finishes with a dot and, in addition to this, we do not take into account other numbers that are in the file that are not protein ID
+
+#Produce the intersection: we just want the common part and that is why we write -12
+comm -12 groups_hsapiens.txt groups_scerevisiae.txt | wc -l
+
+
+#5
+
+#Replace ACGT with UGCA in S288C_reference_genome_R64-2-1_20150113
+sed 'y/ACGT/UGCA/' S288C_reference_sequence_R64-2-1_20150113.fsa > new_S288C_reference_sequence_R64-2-1_20150113.fsa
+
